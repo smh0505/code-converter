@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'D2Coding';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --background-color: #e7feff;
+    --background-color-hover: #afeeee;
+    --background-color-navbar: #ffffff;
+    --background-color-toggle: #000000;
+    --color: #000000;
+    --shadow-color: #757575;
+    --border-color: #00b7eb;
+    --toggle-color: #ffffff;
+}
+
+:root .dark-mode {
+    --background-color: #353535;
+    --background-color-hover: #696969;
+    --background-color-navbar: #000000;
+    --background-color-toggle: #ffffff;
+    --color: #ffffff;
+    --shadow-color: #757575;
+    --border-color: #acacac;
+    --toggle-color: #000000;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
