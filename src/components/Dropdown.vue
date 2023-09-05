@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown-button" @click="isAbove = !isAbove">
+    <div class="dropdown-button" @click="isAbove = true" @mouseleave="isAbove = false">
         <div class="dropdown-selected">{{ items[selected] }}</div>
         <transition>
             <div class="dropdown-items" v-show="isAbove">

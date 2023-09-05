@@ -31,7 +31,6 @@ import { convert } from '../scripts/Convert'
 export default {
     data: () => ({
         input: "",
-        output: "",
         reverse: false,
 
         items: ['UTF-8 String', 'UTF-16 String', 'Code Units', 'Base64'],
@@ -42,6 +41,12 @@ export default {
     computed: {
         texts() {
             return this.setting.getTexts
+        },
+        output() {
+            if (!this.input) return ""
+            let output = convert(this.indices[0], this.indices[1], this.input)
+            if (!output) output = this.texts.convert.error
+            return output
         }
     },
     methods: {
@@ -70,12 +75,6 @@ export default {
             document.body.appendChild(link)
             link.click()
             document.body.removeChild(link)
-        }
-    },
-    updated() {
-        this.output = convert(this.indices[0], this.indices[1], this.input)
-        if (this.input && !this.output) {
-            this.output = this.texts.convert.error
         }
     },
     components: { Toggle, Dropdown }
