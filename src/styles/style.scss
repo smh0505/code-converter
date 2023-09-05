@@ -1,0 +1,25 @@
+@mixin trans {
+    transition: all 0.2s ease-out;
+}
+
+@mixin convert-buttons {
+    display: flex;
+    align-items: center;
+
+    width: max-content;
+    height: 40px;
+
+    padding-inline: 6px;
+    margin-block: 6px;
+    border-radius: 4px;
+
+    font: normal 24px sans-serif;
+    color: var(--color);
+
+    user-select: none;
+    @include trans;
+
+    &:hover {
+        background-color: var(--background-color-hover);
+    }
+}

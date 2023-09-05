@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./styles/Transition.scss";
+@import "./styles/style.scss";
 
 .background {
     position: absolute; 

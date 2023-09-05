@@ -1,24 +1,40 @@
 <template>
     <div class="nav-container">
-        <router-link class="nav-button" to="/">Home</router-link>
-        <router-link class="nav-button" to="/convert">Convert</router-link>
-        <div class="nav-button nav-right" @click="setting.toggleDarkMode()">
-            <div>{{ setting.isDarkMode ? "Dark Mode" : "Light Mode" }}</div>
-            <Toggle :is-active="setting.isDarkMode"></Toggle>
+        <router-link class="nav-button" to="/">{{ texts.navbar.home }}</router-link>
+        <router-link class="nav-button" to="/convert">{{ texts.navbar.convert }}</router-link>
+        <div class="nav-right-side">
+            <Dropdown class="nav-button" :items="languages" :id="0" 
+                :selected="setting.currentLanguage" @select="select"></Dropdown>
+            <div class="nav-button" @click="setting.toggleDarkMode()">
+                <div>{{ setting.isDarkMode ? texts.navbar.darkmode : texts.navbar.lightmode }}</div>
+                <Toggle :is-active="setting.isDarkMode"></Toggle>
+            </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import Toggle from './Toggle.vue'
+import Dropdown from './Dropdown.vue'
 import { useSettingStore } from '../stores/SettingStore'
 
 export default {
     data: () => ({
-        setting: useSettingStore()
+        setting: useSettingStore(),
+        languages: ['English', '한국어'],
     }),
     components: {
-        Toggle
+        Toggle, Dropdown
+    },
+    computed: {
+        texts() {
+            return this.setting.getTexts
+        }
+    },
+    methods: {
+        select(_: number, index: number) {
+            this.setting.currentLanguage = index
+        }
     },
     mounted() {
         this.setting.loadSetting()
@@ -28,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../styles/Transition.scss";
+@import "../styles/style.scss";
 
 .nav-container {
     display: flex;
@@ -46,8 +62,15 @@ export default {
     box-shadow: 0px 3px 10px var(--shadow-color);
     @include trans;
 
+    .nav-right-side {
+        display: flex;
+        position: absolute;
+        right: 0;
+    }
+
     .nav-button {
         display: flex;
+        width: fit-content;
         height: 48px;
         padding: 12px;
         gap: 8px;
@@ -57,14 +80,7 @@ export default {
         user-select: none;
         @include trans;
         
-        &.nav-right {
-            position: absolute;
-            right: 0;
-        }
-
-        &:hover {
-            background-color: var(--background-color-hover);
-        }
+        &:hover { background-color: var(--background-color-hover); }
     }
 }
 </style>
