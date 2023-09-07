@@ -3,18 +3,28 @@
         <div class="convert-header">
             <Dropdown class="convert-dropdown" :items="items" :id="0" 
                 :selected="indices[0]" @select="select"></Dropdown>
-            <div class="convert-toggle" @click="toggleReverse()">⇄</div>
+            <div class="convert-toggle" @click="toggleReverse()">
+                <span class="material-symbols-outlined">sync_alt</span>
+            </div>
             <Dropdown class="convert-dropdown" :items="items" :id="1" 
                 :selected="indices[1]" @select="select"></Dropdown>
         </div>
         <textarea class="convert-input" :placeholder="texts.convert.input" 
             v-model="input"></textarea>
         <div class="convert-middle-menu">
-            <div class="convert-clear" @click="clear()">{{ texts.convert.clear }}</div>
-            <div class="convert-paste" @click="paste()">{{ texts.convert.paste }}</div>
+            <div class="convert-clear" @click="clear()">
+                <span class="material-symbols-outlined">delete</span>
+            </div>
+            <div class="convert-paste" @click="paste()">
+                <span class="material-symbols-outlined">content_paste</span>
+            </div>
             <div class="convert-middle-right">
-                <div class="convert-copy" @click="copy()">{{ texts.convert.copy }}</div>
-                <div class="convert-save" @click="save()">{{ texts.convert.save }}</div>
+                <div class="convert-copy" @click="copy()">
+                    <span class="material-symbols-outlined">folder_copy</span>
+                </div>
+                <div class="convert-save" @click="save()">
+                    <span class="material-symbols-outlined">save</span>
+                </div>
             </div>
         </div>
         <textarea class="convert-input" :placeholder="texts.convert.output" 
@@ -90,7 +100,7 @@ export default {
 
     .convert-header {
         display: grid;
-        grid-template-columns: 1fr 100px 1fr;
+        grid-template-columns: 1fr 40px 1fr;
         align-items:center;
 
         margin-bottom: 8px;
@@ -102,6 +112,7 @@ export default {
             width: 100%;
             padding: 6px 8px;
             border-radius: 4px;
+            color: var(--color);
             @include trans;
 
             &:hover {
@@ -112,10 +123,8 @@ export default {
         .convert-toggle {
             @include convert-buttons;
             margin: 0px;
-            padding: 0px 0px 6px 0px;
             justify-content: center;
             width: 100%;
-            font: normal 24px sans-serif;
         }
     }
 

@@ -43,7 +43,7 @@ export default {
         position: absolute;
         flex-direction: column;
         z-index: 99;
-        width: 100%;
+        width: max-content;
 
         box-shadow: 0px 0px 10px var(--shadow-color);
         background-color: var(--background-color-navbar);

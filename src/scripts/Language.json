@@ -9,11 +9,7 @@
         "convert": {
             "input": "Insert your text here.",
             "output": "The result will be shown here.",
-            "error": "Error: Cannot be converted.",
-            "clear": "Clear",
-            "paste": "Paste",
-            "copy": "Copy",
-            "save": "Save"
+            "error": "Error: Cannot be converted."
         }
     },
     "korean": {
@@ -26,11 +22,7 @@
         "convert": {
             "input": "여기에 텍스트를 입력해주세요.",
             "output": "결과는 여기에 표시됩니다.",
-            "error": "오류: 변환할 수 없습니다.",
-            "clear": "지우기",
-            "paste": "붙여넣기",
-            "copy": "복사",
-            "save": "저장"
+            "error": "오류: 변환할 수 없습니다."
         }
     }
 }
