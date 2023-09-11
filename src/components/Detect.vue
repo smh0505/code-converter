@@ -55,10 +55,7 @@ export default {
                     if (index === regex.lastIndex) regex.lastIndex += 1
                     index = regex.lastIndex
                 }
-            } catch {
-                
-            }
-            
+            } catch { }
             return match
         }
     }

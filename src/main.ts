@@ -7,11 +7,13 @@ import App from './App.vue'
 import Home from './components/Home.vue'
 import Convert from './components/Convert.vue'
 import Detect from './components/Detect.vue'
+import Hash from './components/Hash.vue'
 
 const routes = [
     { path: '/', component: Home },
     { path: '/convert', component: Convert },
-    { path: '/detect', component: Detect }
+    { path: '/detect', component: Detect },
+    { path: '/hash', component: Hash }
 ]
 const router = createRouter({
     history: createWebHashHistory(),

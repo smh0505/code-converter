@@ -3,7 +3,8 @@
         "navbar": {
             "home": "Home",
             "convert": "Convert",
-            "detect": "Detect",
+            "detect": "RegExp",
+            "hash": "Hash",
             "darkmode": "Dark Mode",
             "lightmode": "Light Mode"
         },
@@ -21,7 +22,8 @@
         "navbar": {
             "home": "홈",
             "convert": "변환",
-            "detect": "탐지",
+            "detect": "정규식",
+            "hash": "해시",
             "darkmode": "다크 모드",
             "lightmode": "라이트 모드"
         },

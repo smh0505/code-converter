@@ -4,6 +4,7 @@
         <router-link class="nav-button" to="/">{{ texts.navbar.home }}</router-link>
         <router-link class="nav-button" to="/convert">{{ texts.navbar.convert }}</router-link>
         <router-link class="nav-button" to="/detect">{{ texts.navbar.detect }}</router-link>
+        <router-link class="nav-button" to="/hash">{{ texts.navbar.hash }}</router-link>
         <div class="nav-right-side">
             <Dropdown class="nav-button" :items="languages" :id="0" :selected="setting.currentLanguage" @select="select"></Dropdown>
             <div class="nav-button" @click="setting.toggleDarkMode()">
@@ -22,6 +23,7 @@
                 <router-link class="nav-list-item" to="/" @click="isOpen = false">{{ texts.navbar.home }}</router-link>
                 <router-link class="nav-list-item" to="/convert" @click="isOpen = false">{{ texts.navbar.convert }}</router-link>
                 <router-link class="nav-list-item" to="/detect" @click="isOpen = false">{{ texts.navbar.detect }}</router-link>
+                <router-link class="nav-list-item" to="/hash" @click="isOpen = false">{{ texts.navbar.hash }}</router-link>
                 <Dropdown class="nav-list-item" :items="languages" :id="0" :selected="setting.currentLanguage" @select="select"></Dropdown>
                 <div class="nav-list-item" @click="setting.toggleDarkMode()">
                     <div>{{ setting.isDarkMode ? texts.navbar.darkmode : texts.navbar.lightmode }}</div>
