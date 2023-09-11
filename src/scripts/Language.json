@@ -16,6 +16,10 @@
         "detect": {
             "pattern": "Insert the regex pattern you want to detect here.",
             "input": "Insert your text here."
+        },
+        "hash": {
+            "input": "Insert your text here.",
+            "output": "The result of ? will be shown here."
         }
     },
     "korean": {
@@ -35,6 +39,10 @@
         "detect": {
             "pattern": "여기에 찾고 싶은 정규 표현식을 입력해주세요.",
             "input": "여기에 텍스트를 입력해주세요."
+        },
+        "hash": {
+            "input": "여기에 텍스트를 입력해주세요.",
+            "output": "? 결과는 여기에 표시됩니다."
         }
     }
 }
