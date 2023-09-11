@@ -6,10 +6,12 @@ import './style.css'
 import App from './App.vue'
 import Home from './components/Home.vue'
 import Convert from './components/Convert.vue'
+import Detect from './components/Detect.vue'
 
 const routes = [
     { path: '/', component: Home },
-    { path: '/convert', component: Convert }
+    { path: '/convert', component: Convert },
+    { path: '/detect', component: Detect }
 ]
 const router = createRouter({
     history: createWebHashHistory(),

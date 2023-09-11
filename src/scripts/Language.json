@@ -3,6 +3,7 @@
         "navbar": {
             "home": "Home",
             "convert": "Convert",
+            "detect": "Detect",
             "darkmode": "Dark Mode",
             "lightmode": "Light Mode"
         },
@@ -10,12 +11,17 @@
             "input": "Insert your text here.",
             "output": "The result will be shown here.",
             "error": "Error: Cannot be converted."
+        },
+        "detect": {
+            "pattern": "Insert the regex pattern you want to detect here.",
+            "input": "Insert your text here."
         }
     },
     "korean": {
         "navbar": {
             "home": "홈",
             "convert": "변환",
+            "detect": "탐지",
             "darkmode": "다크 모드",
             "lightmode": "라이트 모드"
         },
@@ -23,6 +29,10 @@
             "input": "여기에 텍스트를 입력해주세요.",
             "output": "결과는 여기에 표시됩니다.",
             "error": "오류: 변환할 수 없습니다."
+        },
+        "detect": {
+            "pattern": "여기에 찾고 싶은 정규 표현식을 입력해주세요.",
+            "input": "여기에 텍스트를 입력해주세요."
         }
     }
 }

@@ -55,7 +55,7 @@ export default {
         output() {
             if (!this.input) return ""
             let output = convert(this.indices[0], this.indices[1], this.input)
-            if (!output) output = this.texts.convert.error
+            if (!output || output.trim().length === 0) output = this.texts.convert.error
             return output
         }
     },
@@ -149,16 +149,7 @@ export default {
     .convert-input {
         width: 100%;
         height: 80px;
-        padding: 8px;
-        border: 4px solid var(--border-color);
-        border-radius: 8px;
-
-        font: 16px "D2Coding", sans-serif;
-        background-color: var(--background-color);
-        color: var(--color);
-        resize: none;
-
-        @include trans;
+        @include input;
     }
 }
 </style>

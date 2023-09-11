@@ -3,11 +3,11 @@
         <div class="nav-text">Code Converter</div>
         <router-link class="nav-button" to="/">{{ texts.navbar.home }}</router-link>
         <router-link class="nav-button" to="/convert">{{ texts.navbar.convert }}</router-link>
+        <router-link class="nav-button" to="/detect">{{ texts.navbar.detect }}</router-link>
         <div class="nav-right-side">
-            <Dropdown class="nav-button" :items="languages" :id="0" 
-                :selected="setting.currentLanguage" @select="select"></Dropdown>
+            <Dropdown class="nav-button" :items="languages" :id="0" :selected="setting.currentLanguage" @select="select"></Dropdown>
             <div class="nav-button" @click="setting.toggleDarkMode()">
-                <div>{{ setting.isDarkMode ? texts.navbar.darkmode : texts.navbar.lightmode }}</div>
+                <span class="material-symbols-outlined">{{ setting.isDarkMode ? "dark_mode" : "light_mode" }}</span>
                 <Toggle :is-active="setting.isDarkMode"></Toggle>
             </div>
         </div>
@@ -19,17 +19,16 @@
         <div class="nav-text">Code Converter</div>
         <transition>
             <div class="nav-list" v-if="isOpen" @mouseleave="isOpen = false">
-                <router-link class="nav-list-item" to="/" @click="isOpen = false">
-                    {{ texts.navbar.home }}
-                </router-link>
-                <router-link class="nav-list-item" to="/convert" @click="isOpen = false">
-                    {{ texts.navbar.convert }}
-                </router-link>
-                <Dropdown class="nav-list-item" :items="languages" :id="0" 
-                    :selected="setting.currentLanguage" @select="select"></Dropdown>
+                <router-link class="nav-list-item" to="/" @click="isOpen = false">{{ texts.navbar.home }}</router-link>
+                <router-link class="nav-list-item" to="/convert" @click="isOpen = false">{{ texts.navbar.convert }}</router-link>
+                <router-link class="nav-list-item" to="/detect" @click="isOpen = false">{{ texts.navbar.detect }}</router-link>
+                <Dropdown class="nav-list-item" :items="languages" :id="0" :selected="setting.currentLanguage" @select="select"></Dropdown>
                 <div class="nav-list-item" @click="setting.toggleDarkMode()">
                     <div>{{ setting.isDarkMode ? texts.navbar.darkmode : texts.navbar.lightmode }}</div>
-                    <Toggle class="nav-list-right" :is-active="setting.isDarkMode"></Toggle>
+                    <div class="nav-list-right">
+                        <span class="material-symbols-outlined">{{ setting.isDarkMode ? "dark_mode" : "light_mode" }}</span>
+                        <Toggle :is-active="setting.isDarkMode"></Toggle>
+                    </div>
                 </div>
             </div>
         </transition>
@@ -148,9 +147,11 @@ export default {
         @include trans;
 
         .nav-list-right {
+            display: flex;
             position: absolute;
             right: 8px;
             bottom: 4px;
+            gap: 4px;
         }
 
         .nav-list-item {

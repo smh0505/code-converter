@@ -14,6 +14,7 @@
     --shadow-color: #757575;
     --border-color: #00b7eb;
     --toggle-color: #ffffff;
+    --highlight-color: #3fff00;
 }
 
 :root .dark-mode {
@@ -25,6 +26,7 @@
     --shadow-color: #757575;
     --border-color: #acacac;
     --toggle-color: #000000;
+    --highlight-color: #648c11
 }
 
 * {
