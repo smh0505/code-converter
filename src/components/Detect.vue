@@ -30,8 +30,12 @@ export default {
             return this.setting.getTexts
         },
         result() {
-            const regex = new RegExp(this.regex, 'g')
-            return this.input.replace(regex, x => `<span class="detect-mark">${x}</span>`)
+            try {
+                const regex = new RegExp(this.regex, 'g')
+                return this.input.replace(regex, x => `<span class="detect-mark">${x}</span>`)
+            } catch {
+                return this.input
+            }
         }
     },
     methods: {
@@ -41,15 +45,20 @@ export default {
             highlight.scroll(0, input.scrollTop)
         },
         matched() {
-            const regex = new RegExp(this.regex, 'g')
             const match = []
-
             let found, index = 0
-            while (this.regex && this.input && (found = regex.exec(this.input)) !== null) {
-                match.push({ text: found[0], index: this.input.indexOf(found[0], index) })
-                if (index === regex.lastIndex) regex.lastIndex += 1
-                index = regex.lastIndex
+
+            try {
+                const regex = new RegExp(this.regex, 'g')
+                while (this.regex && this.input && (found = regex.exec(this.input)) !== null) {
+                    match.push({ text: found[0], index: this.input.indexOf(found[0], index) })
+                    if (index === regex.lastIndex) regex.lastIndex += 1
+                    index = regex.lastIndex
+                }
+            } catch {
+                
             }
+            
             return match
         }
     }
