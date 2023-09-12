@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     vue(),
     nodePolyfills({
-      include: ['buffer']
+      include: ['buffer', 'path']
     })
   ],
   base: '/code-converter/'
