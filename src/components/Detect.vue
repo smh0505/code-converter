@@ -1,5 +1,11 @@
 <template>
     <div id="detect-container">
+        <div id="detect-header">
+            <div @click="clear()"><span class="material-symbols-outlined">delete</span></div>
+            <div @click="paste()"><span class="material-symbols-outlined">content_paste</span></div>
+            <input type="text" placeholder="output (.json)" v-model="filename">
+            <div @click="save()" v-if="input && regex"><span class="material-symbols-outlined">save</span></div>
+        </div>
         <input type="text" :placeholder="texts.detect.pattern" v-model="regex">
         <div id="detect-backlayer" ref="highlight"><div v-html="result"></div></div>
         <textarea :placeholder="texts.detect.input" v-model="input" @scroll="scroll()" ref="input"></textarea>
@@ -14,11 +20,13 @@
 
 <script lang="ts">
 import { useSettingStore } from '../stores/SettingStore';
+import filenamify from 'filenamify'
 
 export default {
     data: () => ({
         regex: "",
         input: "",
+        filename: "",
         setting: useSettingStore()
     }),
     computed: {
@@ -49,6 +57,26 @@ export default {
                 }
             } catch { }
             return match
+        },
+        clear() { this.input = "" },
+        paste() { navigator.clipboard.readText().then((text: string) => (this.input = text)) },
+        save() {
+            const output = {
+                input: this.input,
+                pattern: this.regex,
+                result: this.matched()
+            }
+            let filename = filenamify(this.filename.trim())
+            if (!filename) filename = 'output.json'
+
+            const url = URL.createObjectURL(new Blob([JSON.stringify(output, null, 4)], { type: 'application/json' }))
+            const link = document.createElement('a')
+            link.href = url
+            link.download = filename.match(/.json$/i) ? filename : filename + '.json'
+
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
         }
     }
 }
@@ -63,11 +91,24 @@ export default {
     flex-direction: column;
     gap: 8px;
 
+    #detect-header {
+        display: grid;
+        grid-template-columns: 40px 40px 1fr 40px;
+        gap: 4px;
+        
+        >:nth-child(1), >:nth-child(2), >:nth-child(4) {
+            @include convert-buttons;
+            margin: 0px;
+        }
+
+        >:nth-child(3) { padding: 0px 8px; }
+    }
+
     input { @include input; }
 
     #detect-backlayer {
         position: absolute;
-        top: 50px;
+        top: 98px;
         width: 100%;
         height: 120px;
         border: 4px solid transparent;

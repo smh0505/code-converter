@@ -16,10 +16,10 @@
         <transition>
             <div v-if="isOpen" @mouseleave="isOpen = false">
                 <router-link class="nav-list-item" v-for="(item, index) in paths" :to="item" @click="isOpen = false">{{ labels[index] }}</router-link>
-                <Dropdown class="nav-list-item" :items="languages" :id="0" :selected="setting.currentLanguage" @select="select"></Dropdown>
+                <Dropdown class="nav-list-item" :items="languages" :selected="setting.currentLanguage" @select="select"></Dropdown>
                 <div class="nav-list-item" @click="setting.toggleDarkMode()">
                     <div>{{ setting.isDarkMode ? texts.navbar.darkmode : texts.navbar.lightmode }}</div>
-                    <div id="nav-list-right">
+                    <div id="nav-right-side">
                         <span class="material-symbols-outlined">{{ setting.isDarkMode ? "dark_mode" : "light_mode" }}</span>
                         <Toggle :is-active="setting.isDarkMode"></Toggle>
                     </div>
@@ -104,13 +104,13 @@ export default {
         user-select: none;
         @include trans;
 
-        #nav-list-right {
+        #nav-right-side {
             @include nav-right(8px);
             bottom: 4px;
         }
 
         .nav-list-item {
-            @include nav-buttons(100%, auto, 6px 8px);
+            @include nav-buttons(auto, auto, 6px 8px);
             &:hover { background-color: var(--background-color-hover); }
         }
     }

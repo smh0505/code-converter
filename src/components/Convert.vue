@@ -11,7 +11,6 @@
             <div @click="paste()"><span class="material-symbols-outlined">content_paste</span></div>
             <div id="convert-middle-right">
                 <div @click="copy()"><span class="material-symbols-outlined">folder_copy</span></div>
-                <div @click="save()"><span class="material-symbols-outlined">save</span></div>
             </div>
         </div>
         <textarea :placeholder="texts.convert.output" v-model="output" readonly></textarea>
@@ -52,17 +51,7 @@ export default {
         // Middle menu buttons
         clear() { this.input = "" },
         paste() { navigator.clipboard.readText().then((text: string) => (this.input = text)) },
-        copy() { navigator.clipboard.writeText(this.output) },
-        save() {
-            let link = document.createElement('a')
-            link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.output)
-            link.download = 'output.txt'
-            link.style.display = 'none'
-
-            document.body.appendChild(link)
-            link.click()
-            document.body.removeChild(link)
-        }
+        copy() { navigator.clipboard.writeText(this.output) }
     },
     components: { Toggle, Dropdown }
 }
