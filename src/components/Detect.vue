@@ -1,12 +1,9 @@
 <template>
-    <div class="detect-container">
-        <input class="detect-pattern" type="text" :placeholder="texts.detect.pattern" v-model="regex">
-        <div class="detect-backdrop" ref="highlight">
-            <div class="detect-highlight" v-html="result"></div>
-        </div>
-        <textarea class="detect-input" :placeholder="texts.detect.input" 
-            v-model="input" @scroll="scroll()" ref="input"></textarea>
-        <ul class="detect-result">
+    <div id="detect-container">
+        <input type="text" :placeholder="texts.detect.pattern" v-model="regex">
+        <div id="detect-backlayer" ref="highlight"><div v-html="result"></div></div>
+        <textarea :placeholder="texts.detect.input" v-model="input" @scroll="scroll()" ref="input"></textarea>
+        <ul>
             <li v-for="text in matched()">
                 <div>{{ text.text }}</div>
                 <div>{{ text.index }}</div>
@@ -22,20 +19,15 @@ export default {
     data: () => ({
         regex: "",
         input: "",
-
         setting: useSettingStore()
     }),
     computed: {
-        texts() {
-            return this.setting.getTexts
-        },
+        texts() { return this.setting.getTexts },
         result() {
             try {
                 const regex = new RegExp(this.regex, 'g')
                 return this.input.replace(regex, x => `<span class="detect-mark">${x}</span>`)
-            } catch {
-                return this.input
-            }
+            } catch { return this.input }
         }
     },
     methods: {
@@ -65,17 +57,15 @@ export default {
 <style lang="scss">
 @import "../styles/style.scss";
 
-.detect-container {
+#detect-container {
     display: flex;
     position: relative;
     flex-direction: column;
     gap: 8px;
 
-    .detect-pattern {
-        @include input;
-    }
+    input { @include input; }
 
-    .detect-backdrop {
+    #detect-backlayer {
         position: absolute;
         top: 50px;
         width: 100%;
@@ -88,20 +78,20 @@ export default {
         background-color: var(--background-color);
         @include trans;
 
-        .detect-highlight {
+        div {
             white-space: pre-wrap;
             word-wrap: break-word;
             color: transparent;
             font: 20px "D2Coding", sans-serif;
 
-            .detect-mark {
+            span {
                 background-color: var(--highlight-color);
                 @include trans;
             }
         }
     }
 
-    .detect-input {
+    textarea {
         height: 120px;
         @include input;
         background-color: transparent;
@@ -109,7 +99,7 @@ export default {
         z-index: 5;
     }
 
-    .detect-result {
+    ul {
         list-style-type: none;
         user-select: none;
         

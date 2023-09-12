@@ -1,7 +1,5 @@
 <template>
-    <div class="toggle-bg" :class="setting.getDarkMode">
-        <div class="toggle-button" :class="getActive"></div>
-    </div>
+    <div id="toggle-bg"><div :class="{ 'toggle-active': isActive }"></div></div>
 </template>
 
 <script lang="ts">
@@ -19,7 +17,7 @@ export default {
     }),
     computed: {
         getActive() {
-            return { ...this.setting.getDarkMode, "toggle-active": this.isActive }
+            return { "toggle-active": this.isActive }
         }
     }
 }
@@ -28,7 +26,7 @@ export default {
 <style lang="scss">
 @import "../styles/style.scss";
 
-.toggle-bg {
+#toggle-bg {
     display: flex;
     position: relative;
     align-items: center;
@@ -37,22 +35,17 @@ export default {
 
     background-color: var(--background-color-toggle);
     border-radius: 16px;
-
     @include trans;
 
-    .toggle-button {
+    div {
         width: 20px;
         height: 20px;
         margin: 2px;
 
         background-color: var(--toggle-color);
         border-radius: 10px;
-
         @include trans;
-
-        &.toggle-active {
-            transform: translateX(30px);
-        }
+        &.toggle-active { transform: translateX(30px); }
     }
 }
 </style>

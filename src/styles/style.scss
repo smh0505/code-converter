@@ -2,6 +2,40 @@
     transition: all 0.2s ease-out;
 }
 
+@mixin navbar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 48px;
+
+    background-color: var(--background-color-navbar);
+    box-shadow: 0px 3px 10px var(--shadow-color);
+    font-style: sans-serif;
+    @include trans;
+}
+
+@mixin nav-buttons($width, $height, $padding) {
+    display: flex;
+    width: $width;
+    height: $height;
+    padding: $padding;
+
+    color: var(--color);
+    text-decoration: none;
+    user-select: none;
+    @include trans;
+}
+
+@mixin nav-right($right) {
+    display: flex;
+    position: absolute;
+    right: $right;
+    gap: 4px;
+}
+
 @mixin convert-buttons {
     display: flex;
     align-items: center;

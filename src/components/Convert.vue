@@ -1,34 +1,20 @@
 <template>
-    <div class="convert-container">
-        <div class="convert-header">
-            <Dropdown class="convert-dropdown" :items="items" :id="0" 
-                :selected="indices[0]" @select="select"></Dropdown>
-            <div class="convert-toggle" @click="toggleReverse()">
-                <span class="material-symbols-outlined">sync_alt</span>
-            </div>
-            <Dropdown class="convert-dropdown" :items="items" :id="1" 
-                :selected="indices[1]" @select="select"></Dropdown>
+    <div id="convert-container">
+        <div id="convert-header">
+            <Dropdown :items="items" :selected="index1" @select="select1"></Dropdown>
+            <div @click="toggleReverse()"><span class="material-symbols-outlined">sync_alt</span></div>
+            <Dropdown :items="items" :selected="index2" @select="select2"></Dropdown>
         </div>
-        <textarea class="convert-input" :placeholder="texts.convert.input" 
-            v-model="input"></textarea>
-        <div class="convert-middle-menu">
-            <div class="convert-clear" @click="clear()">
-                <span class="material-symbols-outlined">delete</span>
-            </div>
-            <div class="convert-paste" @click="paste()">
-                <span class="material-symbols-outlined">content_paste</span>
-            </div>
-            <div class="convert-middle-right">
-                <div class="convert-copy" @click="copy()">
-                    <span class="material-symbols-outlined">folder_copy</span>
-                </div>
-                <div class="convert-save" @click="save()">
-                    <span class="material-symbols-outlined">save</span>
-                </div>
+        <textarea :placeholder="texts.convert.input" v-model="input"></textarea>
+        <div id="convert-middle-menu">
+            <div @click="clear()"><span class="material-symbols-outlined">delete</span></div>
+            <div @click="paste()"><span class="material-symbols-outlined">content_paste</span></div>
+            <div id="convert-middle-right">
+                <div @click="copy()"><span class="material-symbols-outlined">folder_copy</span></div>
+                <div @click="save()"><span class="material-symbols-outlined">save</span></div>
             </div>
         </div>
-        <textarea class="convert-input" :placeholder="texts.convert.output" 
-            readonly v-model="output"></textarea>
+        <textarea :placeholder="texts.convert.output" v-model="output" readonly></textarea>
     </div>
 </template>
 
@@ -41,41 +27,32 @@ import { convert } from '../scripts/Convert'
 export default {
     data: () => ({
         input: "",
-        reverse: false,
-
         items: ['UTF-8 String', 'UTF-16 String', 'Code Units', 'Base64'],
-        indices: [0, 1],
-
+        index1: 0,
+        index2: 1,
         setting: useSettingStore()
     }),
     computed: {
-        texts() {
-            return this.setting.getTexts
-        },
+        texts() { return this.setting.getTexts },
         output() {
             if (!this.input) return ""
-            let output = convert(this.indices[0], this.indices[1], this.input)
+            let output = convert(this.index1, this.index2, this.input)
             if (!output || output.trim().length === 0) output = this.texts.convert.error
             return output
         }
     },
     methods: {
-        select(key: number, index: number) {
-            this.indices[key] = index
-        },
+        // Dropdowns
+        select1(index: number) { this.index1 = index },
+        select2(index: number) { this.index2 = index },
         toggleReverse() {
             this.input = this.output;
-            [this.indices[0], this.indices[1]] = [this.indices[1], this.indices[0]];
+            [this.index1, this.index2] = [this.index2, this.index1];
         },
-        clear() {
-            this.input = ""
-        },
-        paste() {
-            navigator.clipboard.readText().then((text: string) => (this.input = text))
-        },
-        copy() {
-            navigator.clipboard.writeText(this.output)
-        },
+        // Middle menu buttons
+        clear() { this.input = "" },
+        paste() { navigator.clipboard.readText().then((text: string) => (this.input = text)) },
+        copy() { navigator.clipboard.writeText(this.output) },
         save() {
             let link = document.createElement('a')
             link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.output)
@@ -94,11 +71,18 @@ export default {
 <style lang="scss">
 @import "../styles/style.scss";
 
-.convert-container {
+@mixin button-groups($position) {
+    display: flex;
+    position: $position;
+    gap: 4px;
+    >:nth-child(1), >:nth-child(2) { @include convert-buttons; }
+}
+
+#convert-container {
     display: flex;
     flex-direction: column;
 
-    .convert-header {
+    #convert-header {
         display: grid;
         grid-template-columns: 1fr 40px 1fr;
         align-items:center;
@@ -108,19 +92,17 @@ export default {
         font: normal 24px sans-serif;
         user-select: none;
 
-        .convert-dropdown {
+        >:nth-child(1), >:nth-child(3) {
             width: 100%;
             padding: 6px 8px;
             border-radius: 4px;
             color: var(--color);
             @include trans;
 
-            &:hover {
-                background-color: var(--background-color-hover);
-            }
+            &:hover { background-color: var(--background-color-hover); }
         }
 
-        .convert-toggle {
+        >:nth-child(2) {
             @include convert-buttons;
             margin: 0px;
             justify-content: center;
@@ -128,25 +110,16 @@ export default {
         }
     }
 
-    .convert-middle-menu {
-        display: flex;
-        position: relative;
-        gap: 4px;
+    #convert-middle-menu {
+        @include button-groups(relative);
 
-        .convert-middle-right {
-            display: flex;
-            position: absolute;
-            right: 0;
-            gap: 4px;
+        #convert-middle-right {
+            @include button-groups(absolute);
+            right: 0px;
         }
-
-        .convert-clear, 
-        .convert-paste, 
-        .convert-copy, 
-        .convert-save { @include convert-buttons; }
     }
 
-    .convert-input {
+    textarea {
         width: 100%;
         height: 80px;
         @include input;

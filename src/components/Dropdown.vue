@@ -1,10 +1,9 @@
 <template>
-    <div class="dropdown-button" @click="isAbove = true" @mouseleave="isAbove = false">
-        <div class="dropdown-selected">{{ items[selected] }}</div>
+    <div id="dropdown-button" @click="isAbove = true" @mouseleave="isAbove = false">
+        <div>{{ items[selected] }}</div>
         <transition>
-            <div class="dropdown-items" v-show="isAbove">
-                <div class="dropdown-item" v-for="(item, index) in items" 
-                    @click="$emit('select', id, index)">{{ item }}</div>
+            <div v-if="isAbove">
+                <div v-for="(item, index) in items" @click="$emit('select', index)">{{ item }}</div>
             </div>
         </transition>
     </div>
@@ -13,10 +12,6 @@
 <script lang="ts">
 export default {
     props: {
-        id: {
-            type: Number,
-            required: true
-        },
         items: {
             type: Array<string>,
             required: true
@@ -34,11 +29,11 @@ export default {
 </script>
 
 <style lang="scss">
-.dropdown-button {
+#dropdown-button {
     position: relative;
     width: 100%;
 
-    .dropdown-items {
+    >:nth-child(2) {
         display: flex;
         position: absolute;
         flex-direction: column;
@@ -50,14 +45,11 @@ export default {
         color: var(--color);
         transition: all 0.2s ease-out;
 
-        .dropdown-item {
+        div {
             width: 100%;
             padding-inline: 8px;
             padding-block: 4px;
-
-            &:hover {
-                background-color: var(--background-color-hover);
-            }
+            &:hover { background-color: var(--background-color-hover); }
         }
     }
 }
