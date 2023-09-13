@@ -8,6 +8,11 @@
             "darkmode": "Dark Mode",
             "lightmode": "Light Mode"
         },
+        "home": {
+            "update": "Updates",
+            "showDiff": "View Difference",
+            "committer": "Committed by ?"
+        },
         "convert": {
             "input": "Insert your text here.",
             "output": "The result will be shown here.",
@@ -30,6 +35,11 @@
             "hash": "해시",
             "darkmode": "다크 모드",
             "lightmode": "라이트 모드"
+        },
+        "home": {
+            "update": "업데이트",
+            "showDiff": "변경점 보기",
+            "committer": "?에 의해 커밋됨"
         },
         "convert": {
             "input": "여기에 텍스트를 입력해주세요.",

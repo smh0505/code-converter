@@ -43,7 +43,8 @@ export default {
     padding: 16px;
     
     max-width: 960px;
-    height: max-content;
+    height: calc(100vh - 96px);
+    overflow: auto;
     
     border: 4px solid var(--border-color);
     border-radius: 16px;
