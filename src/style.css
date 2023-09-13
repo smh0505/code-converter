@@ -15,6 +15,7 @@
     --border-color: #00b7eb;
     --toggle-color: #ffffff;
     --highlight-color: #3fff00;
+    --disabled-color: rgba(0, 0, 0, 0.5);
 }
 
 :root .dark-mode {
@@ -26,7 +27,8 @@
     --shadow-color: #757575;
     --border-color: #acacac;
     --toggle-color: #000000;
-    --highlight-color: #648c11
+    --highlight-color: #648c11;
+    --disabled-color: rgba(255, 255, 255, 0.5);
 }
 
 * {
