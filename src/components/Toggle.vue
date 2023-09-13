@@ -35,7 +35,7 @@ export default {
 
     background-color: var(--background-color-toggle);
     border-radius: 16px;
-    @include trans;
+    transition: all 0.2s ease-out;
 
     div {
         width: 20px;
@@ -44,7 +44,7 @@ export default {
 
         background-color: var(--toggle-color);
         border-radius: 10px;
-        @include trans;
+        transition: all 0.2s ease-out;
         &.toggle-active { transform: translateX(30px); }
     }
 }

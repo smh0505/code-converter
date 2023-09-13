@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div id="nav-mobile" :class="{ 'nav-list-open': isOpen }">
+    <div id="nav-mobile">
         <div class="nav-button" @click="isOpen = !isOpen"><span class="material-symbols-outlined">menu</span></div>
         <div class="nav-text">Code Converter</div>
         <transition>
@@ -80,9 +80,9 @@ export default {
 
 #nav-container {
     @include navbar;
-    visibility: visible;
     flex-direction: row;
     gap: 4px;
+    box-shadow: 0px 3px 10px var(--shadow-color);
 
     #nav-right-side { @include nav-right(0px); }
     .nav-button { gap: 8px; }
@@ -91,8 +91,7 @@ export default {
 #nav-mobile { 
     @include navbar;
     visibility: hidden;
-
-    &.nav-list-open { box-shadow: none; }
+    opacity: 0;
 
     >:nth-child(3) {
         position: absolute;
@@ -102,7 +101,7 @@ export default {
         background-color: var(--background-color-navbar);
         box-shadow: 0px 3px 5px var(--shadow-color);
         user-select: none;
-        @include trans;
+        transition: all 0.2s ease-out;
 
         #nav-right-side {
             @include nav-right(8px);
@@ -117,8 +116,7 @@ export default {
 }
 
 @media (max-width: 640px) {
-    #nav-container { visibility: hidden; }
-    #nav-mobile { visibility: visible; }
+    #nav-mobile { visibility: visible; opacity: 1; }
 }
 
 .v-enter-active, .v-leave-active { transition: opacity 0.2s ease-out; }

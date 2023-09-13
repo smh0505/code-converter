@@ -32,7 +32,9 @@ export default {
     background-color: var(--background-color);
     color: var(--color);
 
-    @include trans;
+    transition-property: color, background;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
 }
 
 .foreground {
