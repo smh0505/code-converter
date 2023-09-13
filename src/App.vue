@@ -50,7 +50,7 @@ export default {
     border-radius: 16px;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1008px) {
     .foreground {
         margin-inline: 24px;
     }

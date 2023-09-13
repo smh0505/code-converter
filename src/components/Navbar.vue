@@ -116,7 +116,7 @@ export default {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
     #nav-container { visibility: hidden; }
     #nav-mobile { visibility: visible; }
 }
