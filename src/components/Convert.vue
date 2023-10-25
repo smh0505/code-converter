@@ -70,6 +70,7 @@ export default {
 #convert-container {
     display: flex;
     flex-direction: column;
+    height: 100%;
 
     #convert-header {
         display: grid;
@@ -110,7 +111,7 @@ export default {
 
     textarea {
         width: 100%;
-        height: 80px;
+        height: 100%;
         @include input;
     }
 }
